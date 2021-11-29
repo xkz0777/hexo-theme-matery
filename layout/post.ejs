@@ -31,10 +31,21 @@
 </main>
 
 <% if (theme.mathjax.enable && page.mathjax) { %>
-<script src="<%- theme.mathjax.cdn %>"></script>
 <script>
-    MathJax.Hub.Config({
-        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]}
-    });
+    window.MathJax = {
+        tex: {
+            inlineMath: [
+                ["$", "$"],
+                ["\\(", "\\)"]
+            ],
+            processEscapes: true
+        },
+        options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre',
+                'code'
+            ]
+        }
+    };
 </script>
+<script src="<%- theme.mathjax.cdn %>"></script>
 <% } %>
